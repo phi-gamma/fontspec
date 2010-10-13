@@ -4,7 +4,7 @@
 
 SHELL = /bin/sh
 .SUFFIXES:
-.SILENT:
+#.SILENT:
 
 #### BEGIN ####
 
@@ -326,13 +326,12 @@ F%: build/F%.ltx
 
 tdsbuild: $(TDS_ZIP)
 	cp -f $(TDS_ZIP) /tmp/
-	git stash
 	git checkout tds-build
 	unzip -o /tmp/$(TDS_ZIP) -d .
 	rm /tmp/$(TDS_ZIP)
-	git commit -a -m "tdsbuild update"
-	git clean -n
+	git commit -a -m "tds build %Y-%m-%d"
+	git clean
+	git push origin tds-build
 	git checkout master
-	git stash pop
 
 
