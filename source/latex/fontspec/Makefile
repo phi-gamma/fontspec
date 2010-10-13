@@ -4,7 +4,7 @@
 
 SHELL = /bin/sh
 .SUFFIXES:
-#.SILENT:
+.SILENT:
 
 #### BEGIN ####
 
@@ -330,7 +330,7 @@ tdsbuild: $(TDS_ZIP)
 	unzip -o /tmp/$(TDS_ZIP) -d .
 	rm /tmp/$(TDS_ZIP)
 	git commit -a -m "tds build %Y-%m-%d"
-	git clean
+	git clean -f
 	git push origin tds-build
 	git checkout master
 
