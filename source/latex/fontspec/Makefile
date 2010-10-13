@@ -47,7 +47,7 @@ GENERATED = $(COMPILED) $(UNPACKED)
 
 TESTS = $(shell ls testsuite/*.cls testsuite/*.tex testsuite/*.ltx)
 
-DOC_EXAMPLES = $(shell ls doc/*.pdf)
+DOC_EXAMPLES = $(shell ls doc-files/*.pdf)
 
 CTAN_FILES = $(SOURCE) $(COMPILED) $(EXAMPLES) $(DOC_EXAMPLES)
 
@@ -326,8 +326,13 @@ F%: build/F%.ltx
 
 tdsbuild: $(TDS_ZIP)
 	cp -f $(TDS_ZIP) /tmp/
+	git stash
 	git checkout tds-build
-	cp /tmp/$(TDS_ZIP) .
-	gunzip $(TDS_ZIP)
+	unzip -o /tmp/$(TDS_ZIP) -d .
+	rm /tmp/$(TDS_ZIP)
+	git commit -a -m "tdsbuild update"
+	git clean -r -n
+	git checkout master
+	git stash pop
 
 
