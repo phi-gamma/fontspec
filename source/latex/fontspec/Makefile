@@ -331,7 +331,7 @@ tdsbuild: $(TDS_ZIP)
 	unzip -o /tmp/$(TDS_ZIP) -d .
 	rm /tmp/$(TDS_ZIP)
 	git commit -a -m "tdsbuild update"
-	git clean -r -n
+	git clean -n
 	git checkout master
 	git stash pop
 
