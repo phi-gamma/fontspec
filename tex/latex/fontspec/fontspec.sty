@@ -896,7 +896,10 @@
     \exp_not:N\DeclareFontShape{\zf@enc}{\zf@family}{#2}{#3}
       {\l_fontspec_nfss_tl}{\l_fontspec_postadjust_tl}
   }
-  \str_if_eq:xxT {#3} {\itdefault}
+  \bool_if:nT {
+     \str_if_eq_p:xx {#3} {\itdefault}  &&
+    !(\str_if_eq_p:xx {\itdefault} {\sldefault})
+  }
   {
     \use:x {
       \exp_not:N \DeclareFontShape {\zf@enc}{\zf@family}{#2}{\sldefault}
